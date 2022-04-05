@@ -1,49 +1,58 @@
-function Account(aNumber,balance){
-    this.aNumber = aNumber;
-    this.balance = balance;
-}
-
-Account.prototype.deposit = function(amount){
-    if(amount > 0){
-        this.balance += amount;
-        console.log(`Deposit: ${this.aNumber}. The new balance is $${this.balance}`);
-        return true;
-}
-else if(amount < 0){
-    console.log(`The amount must be positive!`)
-}
-}
-
-Account.prototype.retrieve = function(amount){
-        if(amount > 0 && this.balance - amount > 0){
-                this.balance -= amount;
-                console.log(`Deposit: ${this.aNumber}. The new balance is $${this.balance}`);
-                return true;
+let bankAccount = (function (initialBalance) {
+    let balance = initialBalance;
+    return {
+      getBalance: function() {
+        return balance;
+      },
+      deposit: function(amount) {
+        if (amount > 0){
+        balance += amount;
+        return balance;
         }
-        else if (amount < 0) {
-            console.log(`The amount must be positive!`);
+        else {
+          throw new Error(`The amount must be positive!`);
         }
-        else if (this.balance - amount < 0){
-            console.log(`No sufficient funds! Try with another amount of money`);
+      },
 
-        }
-}
+      retrieve: function(amount){
+        if(amount > 0 && balance > amount){
+            balance -= amount;
+            console.log(`Retrieve: ${amount}. The new balance is $${balance}`);
+            return balance;
+    }
+    else if (amount < 0) {
+      throw new Error(`The amount must be positive!`);
+    }
+    else if (balance < amount){
+      throw new Error(`No sufficient funds! Try with another amount of money`);
 
-Account.prototype.transfer = function (amount,account){
-        if(this.retrieve(amount) && account.deposit(amount)){
-            console.log(`Transfer: $${amount} has been removed to ${this.aNumber} and sent to ${account.aNumber}`);
-            return true;
-        }
-}
+    }
+    },
+    transfer: function(tran, account){
+        if(tran > 0 && balance > tran){
+            balance -= tran;
+            account.deposit(tran);
+            console.log(`Transfer succeed: ${tran}. The new balance is $${balance}`);
+            return balance;
+    }
+    else if (tran < 0) {
+        throw new Error('Introduce a positive amount!');
+    }
+    else if (balance < tran){
+        throw new Error (`No sufficient funds! Try with another amount of money`);
 
-Account.prototype.consult = function(){
-        return console.log(`Greetings, client: ${this.aNumber}! Your financial balance is: $${this.balance}`);
-}
+    }
+    }
+    };
+  });
 
-var user1 = new Account('A2F80', 1000);
-var user2 = new Account('B3N10', 250);
+const account = bankAccount(100);
+const account1= bankAccount(200);
 
-user1.deposit(800);
-user1.retrieve(100);
-user2.transfer(200,user1);
-user1.consult();
+console.log(account.getBalance());
+console.log(account.deposit(10));
+console.log(account.retrieve(90));
+console.log(account1.getBalance());
+console.log(account1.retrieve(50));
+console.log(account.transfer(10,account1));
+console.log(account1.getBalance());
