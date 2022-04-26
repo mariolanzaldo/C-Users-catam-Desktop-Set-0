@@ -1,9 +1,9 @@
 function distance(...args) {
     args.forEach(element => {
-        if(Array.isArray(element)){
-            element.forEach(inside =>{
+        if (Array.isArray(element)) {
+            element.forEach(inside => {
                 if (isNaN(parseInt(inside)) === true)
-                throw new Error('Introduce a numerical value');            
+                    throw new Error('Introduce a numerical value');
             });
         }
         if (!Array.isArray(element) && isNaN(parseInt(element)) === true)
