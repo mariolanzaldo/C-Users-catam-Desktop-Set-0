@@ -1,18 +1,8 @@
-function add(...args){
- let a = args.reduce(function (a,b) {
-     return a+b;
-    },0);
- return function(...args){
-     let b = args.reduce(function (a,b) {
-         return a+b;
-        },0);
-
-     if(b){
-         return add(a+b);
-     }
-     return a;
- };
+function add(...args) {
+    let result = 0;
+    args.forEach(element => result += element);
+    return result;
 }
 
-var ans = add(2,3,4)() + add(2,3)();
+var ans = add(1, 2) + add(1, 4, 6, 7, 2);
 console.log(ans);
