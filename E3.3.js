@@ -1,25 +1,28 @@
-var obj = {
-    add: function (a,b,c) {
-       return a+b+c;
-    },
-    mul: function(a, b,c) {
-      return a *c* b;
-    },
-    f: function(a) {
-        let fac = 1;
+var myMath = {
+  add: function (...args) {
+    let result = 0;
+    args.forEach(element => result += element);
+    return result;
+  },
+  mul: function (...args) {
+    let result = 1;
+    args.forEach(element => result *= element);
+    return result;
+  },
+  fact: function (a) {
+    let fac = 1;
 
-        for(let i = 1; i <= a ; i++){
-          fac *=i;
-        }
-
-      return fac;
+    for (let i = 1; i <= a; i++) {
+      fac *= i;
     }
-  };
-  
- var p = obj.add(3, 9,10);
- var b = obj.mul(3, 6, 2);
- var c = obj.f(4);
- 
- console.log(p);
- console.log(b);
- console.log(c);
+    return fac;
+  }
+};
+
+var p = myMath.add(1, 2, 3);
+var b = myMath.mul(1, 2, 3);
+var c = myMath.fact(4);
+
+console.log(p);
+console.log(b);
+console.log(c);
