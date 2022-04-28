@@ -1,16 +1,16 @@
-function printAttr(element){
-    if(element.hasAttributes()){
+function printAttr(element) {
+    if (element.hasAttributes()) {
         var attrs = div.attributes;
         var output = "Should print out:";
-        for(var i = 0; i < attrs.length; i++ ){
-            if(i < attrs.length - 1){
-                output +=" " + attrs[i].value + ",";
-            } else{
-                output +=" " + attrs[i].value + ".";
+        for (var i = 0; i < attrs.length; i++) {
+            if (i < attrs.length - 1) {
+                output += " " + attrs[i].value + ",";
+            } else {
+                output += " " + attrs[i].value + ".";
             }
         }
         return output;
-    }else {
+    } else {
         output = "No attributes to show";
         return output;
     }
