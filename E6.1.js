@@ -1,86 +1,114 @@
-class Animal {
-    constructor(name) {
-        this.name = name;
+class ObjectCreator {
+    constructor(height, width, edges) {
+        this.height = height;
+        this.width = width;
+        this.edges = edges;
     }
-
-    greet() {
-        console.log(`Hi, my name is ${this.name}`)
-    };
-
-    behaviour() {
-
-    };
 }
 
-class Vertebrate extends Animal {
+class Shape extends ObjectCreator {
     constructor(...args) {
         super(...args);
-        this.spine = 'spine';
+    }
+
+    display() {
+        if (this.edges === 3) {
+            return `Triangle is shape since it has ${this.edges} edges`;
+        }
+
+        else if (this.edges === 4) {
+            // return `Quadrilateral is shape since it has ${this.edges} edges`;
+            if (this.width === this.height) {
+                return `Quadrilateral is shape(${this.edges} edges). However, this a square since ${this.width} and ${this.height} are equal`;
+            } else {
+                return `Quadrilateral is shape(${this.edges} edges). However, this a rectangle since ${this.width} and ${this.height} aren't equal`;
+            }
+        }
     }
 }
 
-class Invertebrate extends Animal {
+class Quadrilateral extends Shape {
     constructor(...args) {
         super(...args);
-        this.spine = 'no-spine';
+        this.name = 'square';
+    }
+    area() {
+        let area = (this.width * this.height);
+        return `The ${this.name} area is: ${area}`;
+    }
+    perimeter() {
+        let perimeter = this.width * 4;
+        return `The ${this.name} perimeter is: ${perimeter}`;
     }
 }
 
-class Octopus extends Invertebrate {
+class Rectangle extends Shape {
     constructor(...args) {
         super(...args);
-        this.behave = 'solitary'
-        this.sound = 'no-sound'
-    }
-    behaviour() {
-        console.log(`I'm an octopus and I have ${this.spine}. Octopus is a ${this.behave} animal. I'm not able to emit any ${this.sound}. However, I can camuflage!`);
-    }
-}
+        this.name = 'rectangle';
 
-class Shark extends Vertebrate {
-    constructor(...args) {
-        super(...args);
-        this.behave = 'dangerous'
-        this.sound = 'sound'
     }
-    behaviour() {
-        console.log(`I'm a shark. Sharks have ${this.spine}. Sharks are considered ${this.behave}. Fun fact: my organs are not able to produce any ${this.sound}`);
+    area() {
+        let area = (this.width * this.height);
+        return `The ${this.name} area is: ${area}`;
+    }
+    perimeter() {
+        let perimeter = (this.width * 2) + (this.height * 2);
+        return `The ${this.name} perimeter is: ${perimeter}`;
     }
 }
 
-class Bird extends Vertebrate {
-    constructor(...args) {
-        super(...args);
-        this.behave = 'instintive'
-        this.sound = 'whistle'
+class Triangle extends Shape {
+    constructor(height, width, edges, a, b) {
+        super(height, width, edges, a, b);
+        this.a = a;
+        this.b = b;
+        this.name = 'triangle';
+
+    }
+    area() {
+        let area = (this.width * this.height);
+        return `The ${this.name} area is: ${area}`;
+    }
+    perimeter() {
+        if (this.a === undefined || this.b === undefined) {
+            throw new Error('Insuficient parameters');
+        } else {
+            let perimeter = this.a + this.b + this.height;
+            return `The ${this.name} perimeter is: ${perimeter}`;
+        }
     }
 
-    bird() {
-        console.log(`I'm a bird. Then, I have ${this.spine}`);
+    triangleType() {
+        if (this.a === undefined || this.b === undefined) {
+            throw new Error('Insuficient parameters');
+        } else {
+            if (this.a === this.b && this.a === this.width && this.b === this.width) {
+                return 'This is an equilateral triangle';
+            }
+            else if (this.a != this.b && this.a != this.width && this.b != this.width) {
+                return 'This is a scalene triangle';
+            }
+            else if (this.a === this.b || this.a === this.width || this.b === this.width) {
+                return 'This is an isosceles triangle';
+            }
+        }
     }
 }
 
-class BlueJay extends Bird {
-    constructor(...args) {
-        super(...args);
-        this.behave = 'aggressive'
-        this.spSound = 'queedle, queedle, queedle'
-    }
-    behaviour() {
-        console.log(`Also, I'm a blue jay. We're considered ${this.behave} birds. Besides, I ${this.sound}, but people knows me to sing: ${this.spSound}!`);
-    }
-}
+let square = new Quadrilateral(5, 5, 4);
+let rectangle = new Rectangle(4, 3, 4);
+let triangle = new Triangle(3, 5, 3, 4, 4);
 
-const paul = new Octopus("Paul");
-const peter = new Shark("Peter");
-const lisa = new BlueJay("Lisa");
+console.log(square.display());
+console.log(square.area());
+console.log(square.perimeter());
 
-paul.greet();
-paul.behaviour();
+console.log(rectangle.display());
+console.log(rectangle.area());
+console.log(rectangle.perimeter());
 
-peter.greet();
-peter.behaviour();
-
-lisa.greet();
-lisa.bird();
-lisa.behaviour();
+console.log(triangle.display());
+console.log(triangle.area());
+console.log(triangle.perimeter());
+console.log(triangle.triangleType())
