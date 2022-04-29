@@ -1,5 +1,5 @@
 function printObjProp(obj, param) {
-  let prop = Object.getOwnPropertyNames(obj);
+  const prop = Object.getOwnPropertyNames(obj);
   let propEx = [];
   if (typeof param === 'boolean') {
     if (param === false) {
@@ -21,7 +21,6 @@ function CustomObject(a, b) {
 };
 
 CustomObject.prototype.c = function () {
-  console.log(this.a + this.b);
   return this.a + this.b;
 }
 
