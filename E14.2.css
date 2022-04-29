@@ -1,15 +1,16 @@
 * {
-padding: 0; 
-margin: 0;
-font: Helvetica;
-background-color: gainsboro;
-box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font: Helvetica;
+    background-color: gainsboro;
+    box-sizing: border-box;
 }
 
-nav{
+nav {
     display: flex;
     justify-content: center;
 }
+
 label {
     display: flex;
     justify-content: center;
@@ -18,17 +19,17 @@ label {
     margin: 5px;
 }
 
-input{
+input {
     margin-left: 10px;
-    border-radius:2px;
+    border-radius: 2px;
     background-color: whitesmoke;
 }
 
-input:focus{
+input:focus {
     background-color: antiquewhite;
 }
 
-button{
+button {
     flex-direction: row;
     border-radius: 5%;
     margin: 5px;
@@ -43,7 +44,7 @@ header {
 }
 
 .title {
-    width:90%;
+    width: 90%;
     border-radius: 10px;
     box-shadow: 10px 5px 5px rgb(63, 61, 61);
     font-size: 30px;
@@ -51,19 +52,19 @@ header {
     text-align: center;
 }
 
-.wrapper{
+.wrapper {
     display: flex;
     flex-wrap: wrap;
     margin: 15px;
     background-color: rgb(169, 117, 217);
     box-shadow: 10px 5px 5px rgb(63, 61, 61);
     border-radius: 5px;
-    width:98%;
+    width: 98%;
     column-count: var(--n-col);
     display: inline-block;
 }
 
-p{  
+p {
     margin: 5px;
     background-color: rgb(169, 117, 217);
 }
