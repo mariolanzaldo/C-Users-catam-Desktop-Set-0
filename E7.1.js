@@ -7,8 +7,7 @@ function hexTorgb(hex) {
     let r = parseInt(validInput[1], 16);
     let g = parseInt(validInput[2], 16);
     let b = parseInt(validInput[3], 16);
-    let rgb = console.log(`rgb(${r},${g},${b})`);
-    return rgb;
+    return `rgb(${r},${g},${b})`;
 }
 
-hexTorgb("#0033ff");
+console.log(hexTorgb("#0033ff"));
