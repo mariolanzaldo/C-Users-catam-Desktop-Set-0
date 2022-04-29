@@ -1,0 +1,17 @@
+[
+    {
+        "image": "Image1",
+        "title": "Title",
+        "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus fugit modi harum pariatur delectus. Quas, ea, doloremque aliquid quae magni nisi nam vitae explicabo nesciunt facere iusto enim rerum delectus."
+    },
+    {
+        "image": "Image2",
+        "title": "Title",
+        "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus fugit modi harum pariatur delectus. Quas, ea, doloremque aliquid quae magni nisi nam vitae explicabo nesciunt facere iusto enim rerum delectus."
+    },
+    {
+        "image": "Image3",
+        "title": "Title",
+        "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus fugit modi harum pariatur delectus. Quas, ea, doloremque aliquid quae magni nisi nam vitae explicabo nesciunt facere iusto enim rerum delectus."
+    }
+]
