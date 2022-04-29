@@ -1,18 +1,20 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: grey;
-    color:whitesmoke;
+    color: whitesmoke;
 }
-.nav-link{
+
+.nav-link {
     text-decoration: none;
 }
- 
-body{
+
+body {
     counter-reset: my-counter;
 }
-.container{
+
+.container {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
@@ -22,7 +24,8 @@ body{
     margin-left: 25%;
     width: 700px;
 }
-body .image:before{
+
+body .image:before {
     content: counter(my-counter);
     counter-increment: my-counter;
 }
@@ -33,7 +36,8 @@ body .image:before{
     border-radius: 4px;
     background-color: rgb(57, 16, 98);
 }
-.title{
+
+.title {
     background-color: rgb(57, 16, 98);
     border-radius: 4px;
 }
@@ -46,10 +50,10 @@ body .image:before{
     border-radius: 8px;
     justify-content: space-around;
     align-items: center;
-    background-color:cadetblue;
+    background-color: cadetblue;
 }
 
-.topic{
+.topic {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -57,25 +61,25 @@ body .image:before{
     gap: 15px;
 }
 
-.text-container{
+.text-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 420px;
-    height:100px;
+    height: 100px;
     background-color: rgb(57, 16, 98);
     border-radius: 4px;
 }
 
-.topic-t2{
+.topic-t2 {
     /* display: flex;*/
     flex-flow: row;
-    flex-flow: wrap; 
+    flex-flow: wrap;
     margin: 20px;
     width: 400px;
 }
 
-.image-t2{
+.image-t2 {
     display: flex;
     float: left;
     margin: 10px;
@@ -84,21 +88,22 @@ body .image:before{
     border-radius: 8px;
     justify-content: space-around;
     align-items: center;
-    background-color:cadetblue;
+    background-color: cadetblue;
 }
 
-.title-t2{
-    transform: translate(430%,-600%);
+.title-t2 {
+    transform: translate(430%, -600%);
     width: 50px;
-    height:20px;
+    height: 20px;
 }
 
-.text-t2{
-    margin-top: 5px;;
+.text-t2 {
+    margin-top: 5px;
+    ;
 }
 
-.back-button{
+.back-button {
     font-size: 30px;
-    margin:150px;
+    margin: 150px;
     color: rgba(0, 0, 255, 0.759);
 }
