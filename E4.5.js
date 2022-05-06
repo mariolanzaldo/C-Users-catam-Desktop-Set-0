@@ -1,6 +1,6 @@
 function distance(...args) {
     args.forEach(element => {
-        if (isNaN(parseInt(element)) === true)
+        if (isNaN(parseInt(element)))
             throw new Error('Introduce a numerical value');
     });
 
@@ -21,6 +21,5 @@ function calcDistance(p1, p2) {
     let delta = Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2) + Math.pow(p2.z - p1.z, 2);
     return Math.sqrt(delta);
 }
-
 
 console.log(distance(1, 2, 0, 3, 1, 1));
