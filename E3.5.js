@@ -1,17 +1,13 @@
-function printObjProp(obj, param) {
-  const prop = Object.getOwnPropertyNames(obj);
-  let propEx = [];
-  if (typeof param === 'boolean') {
-    if (param === false) {
-      return prop;
-    } else if (param === true) {
-      for (let i = 0; i < prop.length - 1; i++) {
-        propEx[i] = prop[i];
-      }
-      return propEx;
-    }
-  } else if (param === undefined) {
-    return prop;
+function printObjProp(object, parameter) {
+  let property = Object.getOwnPropertyNames(object);
+  const fromPrototype = Object.keys(Object.getPrototypeOf(object));
+  if (parameter) {
+    property = property.filter(element => !fromPrototype.includes(element));
+    return property;
+  } else if (!parameter) {
+    return property;
+  } else if (typeof object.a === 'function' || typeof object.b === 'function') {
+    throw new Error('Function inputs are not allowed')
   }
 }
 
@@ -24,6 +20,12 @@ CustomObject.prototype.c = function () {
   return this.a + this.b;
 }
 
-let obj = new CustomObject(1, 2);
-obj.c = obj.c();
-console.log(printObjProp(obj, true));
+CustomObject.prototype.s = function () {
+  return this.a - this.b;
+}
+
+let newObject = new CustomObject(3, "4");
+
+newObject.c = newObject.c();
+newObject.s = newObject.s();
+console.log(printObjProp(newObject, true));
