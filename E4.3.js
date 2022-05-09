@@ -1,19 +1,30 @@
 class HoldObj {
-    constructor(a) {
-        this.a = a;
+  constructor(a) {
+    if (isNaN(parseInt(a))) {
+      throw new Error('Must be a number');
+    } else {
+      this[a] = a;
     }
-
-    get a() {
-        return this._a;
-    }
-    set a(val) {
-        if (isNaN(parseInt(val)) === true) {
-            throw new Error('Must be a number');
-        } else {
-            this._a = parseInt(val);
-        }
-    }
+  }
 }
+const value = 2;
+const newObj = new HoldObj(value);
 
-const newObj = new HoldObj('9');
-console.log(newObj);
+let newObjProxy = new Proxy(newObj, {
+  get: (obj, prop) => {
+    if (prop == `${value}`) {
+      return new Error(prop + '- is private');
+    }
+    return obj[prop];
+  },
+  set: (obj, prop, val) => {
+    if (prop == `${value}`) {
+      throw new Error(prop + '- is private');
+    }
+    obj[prop] = val;
+    return true;
+  }
+});
+
+newObjProxy[value] = 3;
+console.log(newObjProxy);
