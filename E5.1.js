@@ -1,83 +1,110 @@
 let transfer = superclass => class extends superclass {
-    transfer(amount, account) {
-        if (this.retrieve(amount) && account.deposit(amount)) {
-            console.log(`Transfer: $${amount} has been removed to ${this.aNumber} and sent to ${account.aNumber}`);
-        }
+  transfer(amount, account) {
+    account = bank.getClientlist().find(element => {
+      if (element.name === account) {
+        return element;
+      }
+    });
+    if (this.retrieve(amount) && account.deposit(amount)) {
+      console.log(`Transfer: $${amount} has been removed to ${this.name} and sent to ${account.name}`);
     }
+  }
 }
 
 class Bank {
-    constructor(aNumber, balance) {
-        this.aNumber = aNumber;
-        this.balance = balance;
-        this.account = false;
+  #clientList;
+  constructor() {
+    this.#clientList = [];
+    this.add;
+  }
+
+  addClient(name, money) {
+    this.#clientList.push(new Client(name, money));
+    return this.#clientList;
+  }
+
+  open(account) {
+
+    const found = this.#clientList.find(element => {
+      if (element.name === account) {
+        element.account = true;
+        return element;
+      }
+    });
+    if (found !== undefined) {
+      return found;
+    } else {
+      throw new Error("Error");
     }
+  }
+  getClientlist() {
+    return this.#clientList;
+  }
+
+  close(account) {
+    this.#clientList.find(element => {
+      if (element.name === account) {
+        element.account = false;
+        return element;
+      } else {
+        throw new Error("Error");
+      }
+    });
+  }
 }
 
-class BankAccount extends transfer(Bank) {
-    constructor(...args) {
-        super(...args)
+class Client extends transfer(Bank) {
+  constructor(name, money) {
+    super(name, money)
+    this.name = name;
+    this.money = money;
+    this.account = false;
+  }
+
+  retrieve(amount) {
+    if (amount > 0 && this.money - amount > 0 && this.account) {
+      this.money -= amount;
+      console.log(`Deposit: ${this.name}. The new balance is $${this.money}`);
+      return true;
+    } else {
+      throw new ValueError("Error");
+    }
+  }
+
+  deposit(amount) {
+    if (amount > 0) {
+      this.money += amount;
+      return true;
+    }
+    else {
+      throw new ValueError("Error");
     }
 
-    open() {
-        if (!this.account) {
-            this.account = true;
-        } else {
-            throw new ValueError("Error");
-        }
-    }
+  }
 
-    close() {
-        if (this.account) {
-            this.account = false;
-        } else {
-            throw new ValueError("Error");
-        }
+  consult() {
+    if (this.account) {
+      console.log(`Greetings, client: ${this.name}! Your financial balance is: $${this.money}`);
+    } else {
+      throw new ValueError("Error");
     }
-
-    deposit(amount) {
-        if (amount > 0) {
-            this.balance += amount;
-            if (this.account) {
-                console.log(`Deposit: ${this.aNumber}. The new balance is $${this.balance}`);
-            }
-            return true;
-        } else {
-            throw new ValueError("Error");
-        }
-    }
-
-    retrieve(amount) {
-        if (amount > 0 && this.balance - amount > 0 && this.account) {
-            this.balance -= amount;
-            console.log(`Deposit: ${this.aNumber}. The new balance is $${this.balance}`);
-            return true;
-        } else {
-            throw new ValueError("Error");
-        }
-    }
-
-    consult() {
-        if (this.account) {
-            console.log(`Greetings, client: ${this.aNumber}! Your financial balance is: $${this.balance}`);
-        } else {
-            throw new ValueError("Error");
-        }
-    }
+  }
 }
+
 export class ValueError extends Error {
-    constructor() {
-        super('Bank account error');
-    }
+  constructor() {
+    super('Bank account error');
+  }
 }
 
-var user1 = new BankAccount('A2F80', 1000);
-var user2 = new BankAccount('B3N10', 250);
-user1.open();
-user1.consult();
-user1.retrieve(10);
-user1.deposit(200);
-user1.transfer(100, user2);
-user1.close();
-user2.open();
-user2.consult();
+let bank = new Bank();
+bank.addClient('Martha', 900);
+bank.addClient('Steve', 1000);
+let martha = bank.open('Martha');
+martha.retrieve(350);
+martha.deposit(40);
+martha.consult();
+martha.transfer(300, 'Steve');
+bank.close('Martha');
+let steve = bank.open('Steve');
+steve.consult();
