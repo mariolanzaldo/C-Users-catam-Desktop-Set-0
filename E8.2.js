@@ -1,22 +1,26 @@
-let f = [function (){
-    return 'Function A';
-}, function (){
-    return 'Function B';
-}, function (){
-    return 'Function C';
-}];
-
-let myFunction = function (counter){
-    if(counter <= 3){
-        timer = time[counter];
-        if(counter === 1||counter === 2||counter === 3){
-            console.log(f[counter-1]());
-        }
-    }else{
-        counter = 0;
-        timer = time[counter];
-    }
-    setTimeout(myFunction,timer,counter + 1);
+function a() {
+    console.log('Function A');
 }
-let time = [30000, 60000, 75000];
+
+function b() {
+    console.log('Function B');
+}
+
+function c() {
+    console.log('Function C');
+}
+
+function myFunction(counter) {
+    let timer = 0;
+    if (counter !== 0 && counter % 2 === 0) {
+        a();
+    }
+    if (counter !== 0 && counter % 4 === 0) {
+        b();
+    }
+    if (counter !== 0 && counter % 5 === 0) {
+        c();
+    }
+    setTimeout(myFunction, timer + 15000, counter + 1);
+}
 myFunction(0);
