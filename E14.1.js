@@ -1,16 +1,8 @@
-function addGrid(n, m) {
-    const frag = document.createDocumentFragment();
-    for (let i = 0; i < (n * m); i++) {
-        let cell = document.createElement("div");
-        cell.innerText = i;
-        frag.appendChild(cell).className = "gridItem";
-    }
-    return frag;
-}
-
 function getInput() {
     const container = document.getElementById('container');
     const input = document.querySelectorAll(".in");
+    const frag = document.createDocumentFragment();
+    let cell = document.createElement("div");
 
     let n = document.getElementById("entryN").value;
     let m = document.getElementById("entryM").value;
@@ -22,17 +14,20 @@ function getInput() {
     else {
         container.style.setProperty('--grid-row', n);
         container.style.setProperty('--grid-col', m);
-        let fragment = addGrid(n, m);
-        container.appendChild(fragment);
-        input.forEach((e) => {
-            e.value = "";
-        });
 
-        for (let i = 0; i < input.length; i++) {
-            input[i].addEventListener('click', event => {
-                container.innerHTML = "";
-            });
+        frag.appendChild(cell).className = "gridItem";
+        let clone = [];
+        for (let i = 0; i < (n * m); i++) {
+            cell.innerText = i;
+            clone = frag.cloneNode(true);
+            container.appendChild(clone);
         }
 
+        input.forEach((e) => {
+            e.value = "";
+            e.addEventListener('click', event => {
+                container.innerHTML = "";
+            });
+        });
     }
 }
