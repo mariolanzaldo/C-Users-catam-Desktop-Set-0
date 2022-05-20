@@ -28,7 +28,6 @@ class Bank {
     }
 
     open(account) {
-
         const found = this.#clientList.find(element => {
             if (element.info.name === account) {
                 element.account = true;
