@@ -21,17 +21,8 @@ function transform(date) {
         let newDate = x.join('-');
         x = [arr[1], arr[0]].join('-');
 
-        let matchDay;
-        for (let property in holidays) {
-            if (property === x) {
-                matchDay = holidays[property];
-            }
-        }
-        if (matchDay !== undefined) {
-            return `French-FRAN: ${newDate}` + ' ' + `${matchDay}`;
-        } else {
-            return `French-FRAN: ${newDate}`;
-        }
+        let matchDay = holidays[x] ? " " + holidays[x] : " ";
+        return `French-FRAN: ${newDate}` + ' ' + `${matchDay}`;
     }
 }
-console.log(transform("05-26-2022"));
+console.log(transform("12-25-2022"));
