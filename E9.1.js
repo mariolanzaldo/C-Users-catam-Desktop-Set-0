@@ -1,15 +1,7 @@
 function dataParse(str) {
-    const parsedObj = JSON.parse(str);
-    const body = /[^{\}]+(?=})/g;
-    const args = /(?<value>(?<=\().*(?=\)))/g;
-    const argFunc = parsedObj.myFn.match(args);
-    const bodyFunc = parsedObj.myFn.match(body);
-    parsedObj.myFn = new Function(argFunc, bodyFunc);
-    return parsedObj;
+    return Function('"use strict"; return (' + str + ')')();
 }
 
-
-const str = '{"prop1": 42, "myFn":"function(a,b){return a+b+this.prop1;}"}';
+const str = "{prop1: 42, myFn: function(a,b) { return a+b+this.prop1;}}";
 let newObj = dataParse(str);
-console.log(newObj);
-console.log(newObj.myFn(1, 2));
+console.log(newObj.myFn(2, 3));
