@@ -1,6 +1,5 @@
 function getInput() {
-    const container = document.getElementById('container');
-    const input = document.querySelectorAll(".in");
+    let container = document.querySelector("#container");
     const frag = document.createDocumentFragment();
     let cell = document.createElement("div");
 
@@ -12,22 +11,30 @@ function getInput() {
         alert('Type a number');
     }
     else {
-        container.style.setProperty('--grid-row', n);
-        container.style.setProperty('--grid-col', m);
-
+        let nodeContainer = document.createElement("div");
+        nodeContainer.setAttribute("id", "node_container");
+        nodeContainer.style.setProperty('--grid-row', n);
+        nodeContainer.style.setProperty('--grid-col', m);
         frag.appendChild(cell).className = "gridItem";
-        let clone = [];
+        let clone;
+
         for (let i = 0; i < (n * m); i++) {
             cell.innerText = i;
             clone = frag.cloneNode(true);
-            container.appendChild(clone);
+            nodeContainer.appendChild(clone);
         }
 
-        input.forEach((e) => {
-            e.value = "";
-            e.addEventListener('click', event => {
-                container.innerHTML = "";
-            });
-        });
+        container.appendChild(nodeContainer);
     }
 }
+
+const body = document.querySelector("body");
+let container = document.querySelector("#container");
+body.addEventListener('click', event => {
+    if (event.target === input[1] || event.target === input[0]) {
+        container.innerHTML = "";
+        if (event.target.value !== "") {
+            event.target.value = "";
+        }
+    }
+});
