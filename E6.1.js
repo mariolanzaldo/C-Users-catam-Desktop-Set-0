@@ -26,21 +26,6 @@ class Shape extends ObjectCreator {
     }
 }
 
-class Square extends Shape {
-    constructor(...args) {
-        super(...args);
-        this.name = 'square';
-    }
-    area() {
-        let area = (this.width * this.height);
-        return `The ${this.name} area is: ${area}`;
-    }
-    perimeter() {
-        let perimeter = this.width * 4;
-        return `The ${this.name} perimeter is: ${perimeter}`;
-    }
-}
-
 class Rectangle extends Shape {
     constructor(...args) {
         super(...args);
@@ -53,6 +38,18 @@ class Rectangle extends Shape {
     }
     perimeter() {
         let perimeter = 2 * (this.width + this.height);
+        return `The ${this.name} perimeter is: ${perimeter}`;
+    }
+}
+
+class Square extends Rectangle {
+    constructor(...args) {
+        super(...args);
+        this.name = 'square';
+    }
+
+    perimeter() {
+        let perimeter = this.width * 4;
         return `The ${this.name} perimeter is: ${perimeter}`;
     }
 }
