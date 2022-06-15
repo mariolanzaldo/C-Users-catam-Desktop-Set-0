@@ -1,56 +1,17 @@
-class ObjectCreator {
+class Shape {
     constructor(height, width, edges) {
         this.height = height;
         this.width = width;
         this.edges = edges;
-    }
-}
-
-class Shape extends ObjectCreator {
-    constructor(...args) {
-        super(...args);
     }
 
     display() {
         if (this.edges === 3) {
             return `Triangle is shape since it has ${this.edges} edges`;
         }
-
         else if (this.edges === 4) {
-            if (this.width === this.height) {
-                return `Quadrilateral is shape(${this.edges} edges). However, this a square since ${this.width} and ${this.height} are equal`;
-            } else {
-                return `Quadrilateral is shape(${this.edges} edges). However, this a rectangle since ${this.width} and ${this.height} aren't equal`;
-            }
+            return `Quadrilateral is shape(${this.edges} edges)`;
         }
-    }
-}
-
-class Rectangle extends Shape {
-    constructor(...args) {
-        super(...args);
-        this.name = 'rectangle';
-
-    }
-    area() {
-        let area = (this.width * this.height);
-        return `The ${this.name} area is: ${area}`;
-    }
-    perimeter() {
-        let perimeter = 2 * (this.width + this.height);
-        return `The ${this.name} perimeter is: ${perimeter}`;
-    }
-}
-
-class Square extends Rectangle {
-    constructor(...args) {
-        super(...args);
-        this.name = 'square';
-    }
-
-    perimeter() {
-        let perimeter = this.width * 4;
-        return `The ${this.name} perimeter is: ${perimeter}`;
     }
 }
 
@@ -92,22 +53,53 @@ class Triangle extends Shape {
     }
 }
 
-let square = new Square(5, 5, 4);
-let rectangle = new Rectangle(4, 3, 4);
-let triangle = new Triangle(3, 5, 3, 4, 4);
+class Quadrilateral extends Shape {
+    constructor(height, width, edges) {
+        super(height, width, 4);
+    }
+}
 
-console.log(square.display());
-console.log(square.area());
-console.log(square.perimeter());
+class Rectangle extends Quadrilateral {
+    constructor(height, width) {
+        super(height, width);
+        this.name = 'Rectangle';
+    }
+
+    area() {
+
+        let area = this.height * this.width;
+        return `The ${this.name} area is: ${area}`;
+    }
+
+    perimeter() {
+        const perimeter = 2 * (this.height + this.width);
+        return `The ${this.name} perimeter is: ${perimeter}`;
+    }
+}
+
+class Square extends Rectangle {
+    constructor(side) {
+        super(side, side);
+        this.name = 'Square';
+    }
+}
+
+let triangle = new Triangle(2, 4, 3, 2, 3);
+let rectangle = new Rectangle(3, 5, 4);
+let square = new Square(3);
+
+console.log(triangle.display());
+console.log(triangle.perimeter());
+console.log(triangle.area());
+console.log(triangle.triangleType());
 
 console.log(rectangle.display());
 console.log(rectangle.area());
 console.log(rectangle.perimeter());
 
-console.log(triangle.display());
-console.log(triangle.area());
-console.log(triangle.perimeter());
-console.log(triangle.triangleType())
+console.log(square.display());
+console.log(square.area());
+console.log(square.perimeter());
 
 //Another example
 class Animal {
