@@ -16,8 +16,8 @@ class Shape {
 }
 
 class Triangle extends Shape {
-    constructor(height, width, edges, a, b) {
-        super(height, width, edges, a, b);
+    constructor(height, width, a, b) {
+        super(height, width, 3, a, b);
         this.a = a;
         this.b = b;
         this.name = 'triangle';
@@ -84,7 +84,7 @@ class Square extends Rectangle {
     }
 }
 
-let triangle = new Triangle(2, 4, 3, 2, 3);
+let triangle = new Triangle(2, 4, 2, 3);
 let rectangle = new Rectangle(3, 5, 4);
 let square = new Square(3);
 
