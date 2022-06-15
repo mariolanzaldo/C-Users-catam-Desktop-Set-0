@@ -11,7 +11,6 @@ function transform(date) {
         "11-11": "Jour d'armistice",
         "25-12": "Noël"
     };
-    const keys = Object.keys(holidays);
 
     if (!validInput) {
         throw new Error('Invalid Input')
